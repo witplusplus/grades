@@ -1,0 +1,38 @@
+<html>
+    <head>
+
+        <script src="scripts/angular.js"></script>
+        <script src="scripts/testAngular.js"></script>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="myCtrl" ng-init="colorBox='lightblue'">
+            
+            <input style="background-color:{{myCol}}" ng-model="colorBox" value="{{colorBox}}">
+            <h1 style="color: {{colorBox}}">Welcome Artur</h1>
+            
+            <h1>{{greetingMessage()}}</h1>
+            <h2>{{changingMessage}}</h2>
+
+            <!--Filtering by input from user.-->
+            <p>Type a letter in the input field:</p>
+            
+            <p><input type="text" ng-model="test"></p>
+            
+            <ul>
+              <li ng-repeat="x in names | filter:test">
+                {{ x }}
+              </li>
+            </ul>
+            
+            <!-- From JSON file -->
+            <ul>
+              <li ng-repeat="data in myData">
+                {{ data.Name }}
+              </li>
+            </ul>
+            
+        </div>
+            
+        <script src="scripts/jquery-2.2.4.js"></script>
+    </body>
+</html>
