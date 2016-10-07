@@ -53,7 +53,7 @@ $(document).ready(function() {
     $("<th>Grade</th>").appendTo(firstRow);
     $("<th>Credits</th>").appendTo(firstRow);
 
-    var numRows = 21;
+    var numRows = 11;
     for (i=1; i < numRows; i++) {
       var row = $("<tr></tr>").appendTo(table);
       var classBox = $("<td>" + "Class " + i + "</td>").appendTo(row).addClass("td-padding");
