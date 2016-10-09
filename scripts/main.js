@@ -14,7 +14,7 @@ $(document).ready(function() {
   }
 
   setupTable();
-
+ 
   $("#form-main-table").submit(function(event) {
     var grades = [];
     var credits = [];
