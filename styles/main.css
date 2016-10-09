@@ -2,6 +2,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 25%;
+}
+
+#title {
+  text-align: center;
 }
 
 tr td.td-padding {
