@@ -14,7 +14,7 @@ $(document).ready(function() {
   }
 
   setupTable();
- 
+
   $("#form-main-table").submit(function(event) {
     var grades = [];
     var credits = [];
@@ -77,10 +77,10 @@ $(document).ready(function() {
             console.log("Grade: " + grades[i] + " converted to: " + value);
             grades[i] = value;
           }
+          else {
+            alert ("Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F)");
+          }
         }
-      }
-      else {
-        alert ("Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F)");
       }
     }
     return grades;
