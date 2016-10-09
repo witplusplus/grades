@@ -12,6 +12,9 @@ $(document).ready(function() {
     'D': 1.00,
     'F': 0.00
   }
+  var ranges = [];
+
+  setRanges();
 
   setupTable();
 
@@ -36,7 +39,7 @@ $(document).ready(function() {
     console.log("Grades length: " + grades.length);
     console.log("Credits length: " + credits.length);
 
-    grades = convertToNumerics(grades);
+    grades = convertToWeights(grades);
     var gpa = calculateGPA(grades, credits)
 
     console.log("GPA: " + gpa);
@@ -45,6 +48,26 @@ $(document).ready(function() {
 
     event.preventDefault(); //Prevents page from reloading.
   });
+
+  function Range(min, weight) {
+    this.min = min;
+    this.weight = weight;
+  }
+
+  function setRanges() {
+    var A = new Range(96, 4.00);
+    var Aminus = new Range(92, 3.67);
+    var Bplus = new Range(88, 3.33);
+    var B = new Range(84, 3.00);
+    var Bminus = new Range(80, 2.67);
+    var Cplus = new Range(76, 2.33);
+    var C = new Range(72, 2.00);
+    var Cminus = new Range(68, 1.67);
+    var Dplus = new Range(64, 1.33);
+    var D = new Range(60, 1.00);
+    var F = new Range(0, 0.00);
+    ranges = [A, Aminus, Bplus, B, Bminus, Cplus, C, Cminus, Dplus, D, F];
+  }
 
   function setupTable() {
     var table = $("#main-tbody");
@@ -68,17 +91,23 @@ $(document).ready(function() {
     }
   }
 
-  function convertToNumerics(grades) {
+  function convertToWeights(grades) {
+    var errorMessage = "Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F) or valid numerics (0-100)."
     for (i=0; i<grades.length; i++) {
       if (isNaN(grades[i])) {
-        for (var key in grades) {
-          if (alphas.hasOwnProperty(grades[i])) {
-            value = alphas[grades[i]];
-            console.log("Grade: " + grades[i] + " converted to: " + value);
-            grades[i] = value;
-          }
-          else {
-            alert ("Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F)");
+        if (alphas.hasOwnProperty(grades[i])) {
+          var value = alphas[grades[i]];
+          grades[i] = value;
+        }
+        else {
+          alert (errorMessage);
+        }
+      }
+      else {
+        for (var j=0; j < ranges.length; j++) {
+          if (grades[i] >= ranges[j].min) {
+            grades[i] = ranges[j].weight;
+            break; //Breaks from this current loop.
           }
         }
       }
@@ -101,4 +130,5 @@ $(document).ready(function() {
     gpa = gpa.toFixed(2);
     return gpa;
   }
+
 });
