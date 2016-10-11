@@ -13,9 +13,16 @@ $(document).ready(function() {
     'F': 0.00
   }
   var ranges = [];
-  var spinner = $("#spinner").spinner(); //The CSS file references the icons, and the HTML file uses them.
-
+  var totalRows = 4;
+  var spinner = $("#spinner").spinner({
+    change: function(event, ui) {
+      alert(spinner.spinner("value"));
+    }
+  }); //The CSS file references the icons, and the HTML file uses them.
   //On spinner event, grab value, and update table size.
+  function updateTable(totalRows) {
+
+  }
 
   setRanges();
 

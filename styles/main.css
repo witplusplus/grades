@@ -34,4 +34,17 @@ input {
 .ui-spinner {
   margin-top: 7px;
   margin-bottom: 7px;
+  height: 40px;
+}
+
+#spinner {
+  height: 30px;
+  width: 60px;
+  margin-right: 35px;
+  text-align: center;
+}
+
+.ui-spinner .ui-spinner-button {
+  width: 30px;
+  height: 20px;
 }
