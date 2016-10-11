@@ -13,16 +13,17 @@ $(document).ready(function() {
     'F': 0.00
   }
   var ranges = [];
-  var totalRows = 4;
+  var currentRows = 4;
   var spinner = $("#spinner").spinner({
+    max: 40,
+    min: 1,
     change: function(event, ui) {
-      alert(spinner.spinner("value"));
+      var newSize = spinner.spinner("value");
+      if (spinner.spinner("isValid")) {
+        updateTable(newSize);
+      }
     }
-  }); //The CSS file references the icons, and the HTML file uses them.
-  //On spinner event, grab value, and update table size.
-  function updateTable(totalRows) {
-
-  }
+  });
 
   setRanges();
 
@@ -49,7 +50,7 @@ $(document).ready(function() {
     console.log("Grades length: " + grades.length);
     console.log("Credits length: " + credits.length);
 
-    grades = convertToWeights(grades);
+    grades = convertToProperGrades(grades);
     var gpa = calculateGPA(grades, credits)
 
     console.log("GPA: " + gpa);
@@ -86,8 +87,8 @@ $(document).ready(function() {
     $("<th>Grade</th>").appendTo(firstRow);
     $("<th>Credits</th>").appendTo(firstRow);
 
-    var numRows = 11;
-    for (i=1; i < numRows; i++) {
+    var numRows = currentRows;
+    for (i=1; i <= numRows; i++) {
       var row = $("<tr></tr>").appendTo(table);
       var classBox = $("<td>" + "Class " + i + "</td>").appendTo(row).addClass("td-padding");
 
@@ -99,9 +100,39 @@ $(document).ready(function() {
       var creditInputBox = $("<input>").appendTo(creditBox);
       $(creditInputBox).attr("name", "credit");
     }
+    spinner.spinner("value", currentRows); //Setting the initial value of the spinner when the table is first created.
   }
 
-  function convertToWeights(grades) {
+  function updateTable(newSize) {
+    if (newSize > currentRows) {
+      var table = $("#main-tbody");
+      var rowsToAdd = newSize - currentRows;
+      for (i=(currentRows+1); i <= newSize; i++) {
+        var row = $("<tr></tr>").appendTo(table);
+        var classBox = $("<td>" + "Class " + i + "</td>").appendTo(row).addClass("td-padding");
+
+        var gradeBox = $("<td></td>").appendTo(row);
+        var gradeInputBox = $("<input>").appendTo(gradeBox);
+        $(gradeInputBox).attr("name", "grade");
+
+        var creditBox = $("<td></td>").appendTo(row);
+        var creditInputBox = $("<input>").appendTo(creditBox);
+        $(creditInputBox).attr("name", "credit");
+
+        currentRows++;
+      }
+    }
+    else if (newSize < currentRows) {
+      var table = $("#main-tbody");
+      var rowsToDelete = currentRows - newSize;
+      for (i=(currentRows); i > newSize; i--) {
+        $(table).children("tr").filter(":last").remove();
+        currentRows--;
+      }
+    }
+  }
+
+  function convertToProperGrades(grades) {
     var errorMessage = "Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F) or valid numerics (0-100)."
     for (i=0; i<grades.length; i++) {
       if (isNaN(grades[i])) {
