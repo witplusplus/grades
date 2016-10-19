@@ -67,3 +67,7 @@ input {
 html p {
   margin-bottom: 5px;
 }
+
+#algorithm-steps {
+  width: 60%;
+}
