@@ -12,15 +12,41 @@
 </head>
 <body>
   <h1 id="title">Wentworth GPA Calculator</h1>
-  <input id="spinner" name="value">
-  <form id="form-main-table">
+
+  <div id=spinner-container>
+    <h3 id=spinner-label> # of classes </h3>
+    <input id="spinner" name="value">
+  </div>
+
+  <form id="form-main-table" autocomplete="off">
     <table id="main-table" class="table-hover">
       <tbody id="main-tbody">
       </tbody>
     </table>
     <input type="submit" name="Submit" id="input-submit">
   </form>
+
   <h1 id="gpa" hidden="true"></h1>
+
+  <div id="algorithm-steps">
+    <h1>Algorithm Steps</h1>
+
+    <p>1. Convert grades into Wentworth's scale of 0-4.</p>
+    <ul id="step-1"></ul>
+
+    <p>2. Calculate the weighted grade for each class by multiplying the grade and its respective credits.</p>
+    <ul id="step-2"></ul>
+
+    <p>3. Sum up all the weighted grades.</p>
+    <ul id="step-3"></ul>
+
+    <p>4. Sum up all the credits.</p>
+    <ul id="step-4"></ul>
+
+    <p>5. Divide the sum of the weighted grades by the sum of credits to get your weighted GPA.</p>
+    <ul id="step-5"></ul>
+  </div>
+
   <script src="scripts/jquery-3.1.1.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="scripts/jquery-ui.js"></script>

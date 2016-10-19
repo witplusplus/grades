@@ -13,8 +13,7 @@ $(document).ready(function() {
     'F': 0.00
   }
   var ranges = [];
-  var currentRows = 4;
-  var recentlySubmited = false;
+  var currentRows = 0;
   var spinner = $("#spinner").spinner({
     max: 40,
     min: 1,
@@ -22,6 +21,7 @@ $(document).ready(function() {
       var newSize = spinner.spinner("value");
       if (spinner.spinner("isValid")) {
         updateTable(newSize);
+        alert("Here");
       }
     }
   });
@@ -51,19 +51,8 @@ $(document).ready(function() {
     console.log("Grades length: " + grades.length);
     console.log("Credits length: " + credits.length);
 
-    var properGrades = convertToProperGrades(grades);
-    var gpa = calculateGPA(properGrades, credits);
-
-    //Clears the results of the previous algorithm steps.
-    if (recentlySubmited) {
-      var steps = $("#algorithm-steps").children("ul");
-      steps.each(function() {
-        steps.empty();
-      });
-    }
-
-    showProof(grades, properGrades, credits);
-    recentlySubmited = true;
+    grades = convertToProperGrades(grades);
+    var gpa = calculateGPA(grades, credits);
 
     console.log("GPA: " + gpa);
     $("#gpa").text("GPA: " + gpa);
@@ -99,8 +88,15 @@ $(document).ready(function() {
     $("<th>Grade</th>").appendTo(firstRow);
     $("<th>Credits</th>").appendTo(firstRow);
 
-    var numRows = currentRows;
-    for (i=1; i <= numRows; i++) {
+    addRows(4);
+    currentRows = 4;
+    spinner.spinner("value", currentRows); //Setting the initial value of the spinner when the table is first created.
+  }
+
+  function addRows(newSize) {
+    var table = $("#main-tbody");
+    var firstRow = $("<tr></tr>").appendTo(table);
+    for (i=(currentRows+1); i <= newSize; i++) {
       var row = $("<tr></tr>").appendTo(table);
       var classBox = $("<td>" + "Class " + i + "</td>").appendTo(row).addClass("td-padding");
 
@@ -112,45 +108,34 @@ $(document).ready(function() {
       var creditInputBox = $("<input>").appendTo(creditBox);
       $(creditInputBox).attr("name", "credit");
     }
-    spinner.spinner("value", currentRows); //Setting the initial value of the spinner when the table is first created.
   }
 
   function updateTable(newSize) {
     if (newSize > currentRows) {
-      var table = $("#main-tbody");
-      for (i=(currentRows+1); i <= newSize; i++) {
-        var row = $("<tr></tr>").appendTo(table);
-        var classBox = $("<td>" + "Class " + i + "</td>").appendTo(row).addClass("td-padding");
-
-        var gradeBox = $("<td></td>").appendTo(row);
-        var gradeInputBox = $("<input>").appendTo(gradeBox);
-        $(gradeInputBox).attr("name", "grade");
-
-        var creditBox = $("<td></td>").appendTo(row);
-        var creditInputBox = $("<input>").appendTo(creditBox);
-        $(creditInputBox).attr("name", "credit");
-
-        currentRows++;
-      }
+      addRows(newSize);
+      currentRows = newSize;
     }
     else if (newSize < currentRows) {
       var table = $("#main-tbody");
+      var rowsToDelete = currentRows - newSize;
       for (i=(currentRows); i > newSize; i--) {
         $(table).children("tr").filter(":last").remove();
         currentRows--;
+        alert("currentRows: " + currentRows);
       }
     }
   }
 
   function convertToProperGrades(grades) {
     var errorMessage = "Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F) or valid numerics (0-100)."
-    var properGrades = [];
+
+    var conversionMessage;
 
     for (i=0; i<grades.length; i++) {
       if (isNaN(grades[i])) {
         if (alphas.hasOwnProperty(grades[i])) {
           var value = alphas[grades[i]];
-          properGrades.push(value);
+          grades[i] = value;
         }
         else {
           alert (errorMessage);
@@ -159,23 +144,28 @@ $(document).ready(function() {
       else {
         for (var j=0; j < ranges.length; j++) {
           if (grades[i] >= ranges[j].min) {
-            var value = ranges[j].weight;
-            properGrades.push(value);
+            conversionMessage = "<p>"
+            grades[i] = ranges[j].weight;
             break; //Breaks from this current loop.
           }
         }
       }
     }
-    return properGrades;
+    return grades;
   }
 
-  function calculateGPA(properGrades, credits) {
+  function calculateGPA(grades, credits) {
     var dividend = 0;
     var divisor = 0;
-    for (i=0; i < properGrades.length; i++) {
-      var result = properGrades[i]*credits[i];
+    for (i=0; i < grades.length; i++) {
+      var result = grades[i]*credits[i];
       dividend = dividend + result;
       divisor = divisor + parseInt(credits[i]);
+
+      var dataLine = "<p>" + (i+1) + ". Grade: " + grades[i] + ", credits: " + credits[i] + "</p>";
+      $(dataLine).appendTo("body");
+      var algorithmLine = "<p>   " + "Weighted Grade: " + grades[i] + " * " + credits[i] + " = " + result + " </p>";
+      $(algorithmLine).appendTo("body");
     }
     var gpa = dividend / divisor;
     gpa = gpa.toFixed(2);
@@ -183,55 +173,4 @@ $(document).ready(function() {
     return gpa;
   }
 
-  function showProof(grades, properGrades, credits) {
-    var step1 = $("#step-1");
-    for (var i=0; i < properGrades.length; i++) {
-      $("<li>" + "Original grade: " + grades[i] + ", converted grade: " + properGrades[i] + "</li>").appendTo(step1);
-    }
-
-    var step2 = $("#step-2");
-    var weightedGrades = [];
-    for (var i=0; i < properGrades.length; i++) {
-      var weightedGrade = properGrades[i] * credits[i];
-      weightedGrades.push(weightedGrade);
-      $("<li>" + weightedGrade + " = " + properGrades[i] + " * " + credits[i] + "</li>").appendTo(step2);
-    }
-
-    var step3Line = "";
-    var step3 = $("#step-3");
-    var sum = 0;
-    for (var i=0; i < weightedGrades.length; i++) {
-      if ((i+1) == weightedGrades.length) {
-        step3Line = step3Line + weightedGrades[i];
-        sum = sum + weightedGrades[i];
-        step3Line = "<li>" + sum + " = " + step3Line + "</li>";
-      }
-      else {
-        step3Line = step3Line + weightedGrades[i] + " + ";
-        sum = sum + weightedGrades[i];
-      }
-    }
-    $(step3Line).appendTo(step3);
-
-    var step4Line = "";
-    var step4 = $("#step-4");
-    var sum2 = 0;
-    for (var i=0; i < credits.length; i++) {
-      if ((i+1) == credits.length) {
-        step4Line = step4Line + credits[i];
-        sum2 = sum2 + parseInt(credits[i]);
-        step4Line = "<li>" + sum2 + " = " + step4Line + "</li>";
-      }
-      else {
-        step4Line = step4Line + credits[i] + " + ";
-        sum2 = sum2 + parseInt(credits[i]);
-      }
-    }
-    $(step4Line).appendTo(step4);
-
-    var step5 = $("#step-5");
-    var gpa = (sum / sum2).toFixed(2);
-    var step5Line = "<li>" + gpa + " = " + sum + " / " + sum2 + "</li>";
-    $(step5Line).appendTo(step5);
-  }
 });

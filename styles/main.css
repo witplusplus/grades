@@ -38,13 +38,32 @@ input {
 }
 
 #spinner {
-  height: 30px;
+  height: 50px;
   width: 60px;
-  margin-right: 35px;
   text-align: center;
+  margin-right: 20px;
 }
 
-.ui-spinner .ui-spinner-button {
-  width: 30px;
-  height: 20px;
+.ui-spinner {
+  width: 140px;
+  height: 60px;
+}
+
+.ui-spinner > .ui-spinner-button {
+  width: 60px;
+  height: 30px;
+}
+
+#spinner-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#spinner-label {
+  margin-right: 20px;
+}
+
+html p {
+  margin-bottom: 5px;
 }
