@@ -1,3 +1,7 @@
+* {
+  
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -57,8 +61,9 @@ input {
 
 #spinner-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 #spinner-label {
@@ -84,5 +89,18 @@ html p {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 10px;
+}
+
+#adjustment-modules {
+  display: flex;
+}
+
+#previous-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+#previous-gpa {
 }

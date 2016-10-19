@@ -12,14 +12,28 @@
 </head>
 <body>
 
+
   <div id="banner">
-    <img src="styles/images/wit-stacked-bw.png" id="logo">
-    <h1 id="title">GPA Calculator</h1>
+    <!-- <img src="styles/images/wit-stacked-bw.png" id="logo"> -->
+    <h1 id="title">Wentworth GPA Calculator</h1>
   </div>
 
-  <div id=spinner-container>
-    <h3 id=spinner-label> # of classes </h3>
-    <input id="spinner" name="value">
+  <div id="adjustment-modules">
+    <div id=spinner-container>
+      <h3 id=spinner-label> # of classes </h3>
+      <input id="spinner" name="value">
+    </div>
+
+    <div id="previous-inputs">
+      <div id="previous-gpa">
+        <label>Prior GPA</label>
+        <input type="text" name="PriorGpa">
+      </div>
+      <div id="previous-credits">
+        <label>Total Previous Credits</label>
+        <input type="text" name="TotalCredits">
+      </div>
+    </div>
   </div>
 
   <form id="form-main-table" autocomplete="off">

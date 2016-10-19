@@ -31,6 +31,8 @@ $(document).ready(function() {
   setupTable();
 
   $("#form-main-table").submit(function(event) {
+    var previousGpa = $("#previous-gpa").find("input").val();
+    var previousTotalCredits = $("#previous-credits").find("input").val();
     var grades = [];
     var credits = [];
     data = $(this).serializeArray();
