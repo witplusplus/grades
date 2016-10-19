@@ -69,5 +69,6 @@ html p {
 }
 
 #algorithm-steps {
-  width: 60%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
