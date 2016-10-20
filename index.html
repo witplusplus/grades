@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-
-
   <div id="banner">
     <img src="styles/images/wit-stacked-bw.png" id="logo">
     <h1 id="title">Wentworth GPA Calculator</h1>
@@ -30,11 +28,15 @@
     </table>
 
     <div id="previous-details">
-      <label>Previous GPA</label>
-      <input name="previous-gpa" value=4.0>
+      <div id="previous-gpa">
+        <label>Previous GPA</label>
+        <input name="previous-gpa" value=4.0>
+      </div>
 
-      <label>Previous Credits</label>
-      <input name="previous-credits" value=0>
+      <div id="previous-credits">
+        <label>Previous Credits</label>
+        <input name="previous-credits" value=0>
+      </div>
     </div>
     <input type="submit" name="Submit" id="input-submit">
   </form>
@@ -47,7 +49,7 @@
       <ul>
         <li>Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F) or valid numerics (0-100).</li>
         <li>For previous GPA, enter a number on the scale of 0-4.</li>
-        <li>If you do not have a previous GPA or you want to calculate a GPA for 1 semester, you start off with a GPA of 4.0.</li>
+        <li>If you do not have a previous GPA or you want to calculate the GPA for 1 semester, you start off with a GPA of 4.0.</li>
       </ul>
     </div>
 
