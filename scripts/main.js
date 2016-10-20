@@ -31,10 +31,10 @@ $(document).ready(function() {
   setupTable();
 
   $("#form-main-table").submit(function(event) {
-    var previousGpa = $("#previous-gpa").find("input").val();
-    var previousTotalCredits = $("#previous-credits").find("input").val();
     var grades = [];
     var credits = [];
+    var previousCredits;
+    var previousGPA;
     data = $(this).serializeArray();
     console.log("Data length: " + data.length);
 
@@ -44,17 +44,28 @@ $(document).ready(function() {
           grades.push(data[i].value);
         }
       }
-      if (data[i].name == ("credit")) {
+      else if (data[i].name == ("credit")) {
         if (data[i].value != "") {
           credits.push(data[i].value);
         }
       }
+      else if ((data[i]).name == ("previous-gpa")) {
+        if (data[i].value != "") {
+          previousGPA = data[i].value;
+        }
+      }
+      else if ((data[i]).name == ("previous-credits")) {
+        if (data[i].value != "") {
+          previousCredits = data[i].value;
+        }
+      }
     }
+
     console.log("Grades length: " + grades.length);
     console.log("Credits length: " + credits.length);
 
     var properGrades = convertToProperGrades(grades);
-    var gpa = calculateGPA(properGrades, credits);
+    var gpa = calculateGPA(properGrades, credits, previousGPA, previousCredits);
 
     //Clears the results of the previous algorithm steps.
     if (recentlySubmited) {
@@ -64,7 +75,7 @@ $(document).ready(function() {
       });
     }
 
-    showProof(grades, properGrades, credits);
+    showProof(grades, properGrades, credits, previousGPA, previousCredits);
     recentlySubmited = true;
 
     console.log("GPA: " + gpa);
@@ -156,6 +167,7 @@ $(document).ready(function() {
         }
         else {
           alert (errorMessage);
+          break;
         }
       }
       else {
@@ -171,7 +183,7 @@ $(document).ready(function() {
     return properGrades;
   }
 
-  function calculateGPA(properGrades, credits) {
+  function calculateGPA(properGrades, credits, previousGpa, previousCredits) {
     var dividend = 0;
     var divisor = 0;
     for (i=0; i < properGrades.length; i++) {
@@ -179,13 +191,20 @@ $(document).ready(function() {
       dividend = dividend + result;
       divisor = divisor + parseInt(credits[i]);
     }
+    console.log("Previous GPA: " + previousGpa + ", " + "Previous Credits:" + previousCredits);
+    if (previousGpa != null && previousCredits != null) {
+      var result = previousGpa * previousCredits;
+      dividend = dividend + result;
+      divisor = divisor + parseInt(previousCredits);
+    }
+    console.log("Dividend: " + dividend + ", " + "Divisor: " + divisor);
     var gpa = dividend / divisor;
     gpa = gpa.toFixed(2);
 
     return gpa;
   }
 
-  function showProof(grades, properGrades, credits) {
+  function showProof(grades, properGrades, credits, previousGpa, previousCredits) {
     var step1 = $("#step-1");
     for (var i=0; i < properGrades.length; i++) {
       $("<li>" + "Original grade: " + grades[i] + ", converted grade: " + properGrades[i] + "</li>").appendTo(step1);
@@ -198,6 +217,8 @@ $(document).ready(function() {
       weightedGrades.push(weightedGrade);
       $("<li>" + weightedGrade + " = " + properGrades[i] + " * " + credits[i] + "</li>").appendTo(step2);
     }
+    var weightedGPA = previousGpa * previousCredits;
+    $("<li>" + weightedGPA + " = " + previousGpa + " * " + previousCredits + "</li>").appendTo(step2);
 
     var step3Line = "";
     var step3 = $("#step-3");
@@ -205,7 +226,9 @@ $(document).ready(function() {
     for (var i=0; i < weightedGrades.length; i++) {
       if ((i+1) == weightedGrades.length) {
         step3Line = step3Line + weightedGrades[i];
+        step3Line = step3Line + " + " + weightedGPA;
         sum = sum + weightedGrades[i];
+        sum = sum + weightedGPA;
         step3Line = "<li>" + sum + " = " + step3Line + "</li>";
       }
       else {
@@ -221,7 +244,9 @@ $(document).ready(function() {
     for (var i=0; i < credits.length; i++) {
       if ((i+1) == credits.length) {
         step4Line = step4Line + credits[i];
+        step4Line = step4Line + " + " + previousCredits;
         sum2 = sum2 + parseInt(credits[i]);
+        sum2 = sum2 + parseInt(previousCredits);
         step4Line = "<li>" + sum2 + " = " + step4Line + "</li>";
       }
       else {
