@@ -51,13 +51,21 @@ input {
 
 #spinner-container {
   display: flex;
-  flex-direction: column;;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
 }
 
 #spinner-label {
   margin-right: 20px;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
 }
 
 html p {
@@ -85,6 +93,9 @@ html p {
   margin: 10px 10px 10px 10px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
 
 #previous-gpa {
@@ -93,4 +104,11 @@ html p {
 
 #previous-credits {
   padding: 4px 4px 4px 4px;
+}
+
+#table-container {
+  padding-left: 10px;
+  padding-right: 15px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
