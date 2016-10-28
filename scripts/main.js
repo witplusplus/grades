@@ -204,7 +204,7 @@ $(document).ready(function() {
     else {
       var gpa = dividend / divisor;
     }
-    gpa = gpa.toFixed(3);
+    gpa = gpa.toFixed(4);
 
     return gpa;
   }
