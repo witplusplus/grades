@@ -204,7 +204,7 @@ $(document).ready(function() {
     else {
       var gpa = dividend / divisor;
     }
-    gpa = gpa.toFixed(2);
+    gpa = gpa.toFixed(3);
 
     return gpa;
   }
@@ -267,7 +267,7 @@ $(document).ready(function() {
       var gpa = 0;
     }
     else {
-      var gpa = (sum / sum2).toFixed(2);
+      var gpa = (sum / sum2).toFixed(3);
     }
 
     var step5Line = "<li>" + gpa + " = " + sum + " / " + sum2 + "</li>";
