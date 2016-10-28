@@ -198,7 +198,12 @@ $(document).ready(function() {
       divisor = divisor + parseInt(previousCredits);
     }
     console.log("Dividend: " + dividend + ", " + "Divisor: " + divisor);
-    var gpa = dividend / divisor;
+    if (divisor == 0) {
+      var gpa = 0;
+    }
+    else {
+      var gpa = dividend / divisor;
+    }
     gpa = gpa.toFixed(2);
 
     return gpa;
@@ -257,7 +262,14 @@ $(document).ready(function() {
     $(step4Line).appendTo(step4);
 
     var step5 = $("#step-5");
-    var gpa = (sum / sum2).toFixed(2);
+
+    if (sum2 == 0) {
+      var gpa = 0;
+    }
+    else {
+      var gpa = (sum / sum2).toFixed(2);
+    }
+
     var step5Line = "<li>" + gpa + " = " + sum + " / " + sum2 + "</li>";
     $(step5Line).appendTo(step5);
   }
