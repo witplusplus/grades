@@ -72,14 +72,15 @@ html p {
   margin-bottom: 5px;
 }
 
-#algorithm-steps {
+#guide {
   margin-left: 5%;
   margin-right: 5%;
 }
 
 #logo {
   margin-top: 20px;
-  max-width: 100%;
+  min-width: 250px;
+  max-width: 385px;
 }
 
 #banner {
@@ -111,4 +112,16 @@ html p {
   padding-right: 15px;
   border-left: 1px solid black;
   border-right: 1px solid black;
+}
+
+.highlight {
+  background-color: rgb(242,169,0);
+  opacity: .8;
+  display: inline;
+  padding: 3px 3px 3px 3px;
+  border-radius: 2px 2px 2px 2px;
+}
+
+algorithm-steps > ul > li {
+  margin: 2px 2px 2px 2px;
 }

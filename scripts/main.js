@@ -204,7 +204,7 @@ $(document).ready(function() {
     else {
       var gpa = dividend / divisor;
     }
-    gpa = gpa.toFixed(2);
+    gpa = gpa.toFixed(3);
 
     return gpa;
   }
@@ -212,7 +212,7 @@ $(document).ready(function() {
   function showProof(grades, properGrades, credits, previousGpa, previousCredits) {
     var step1 = $("#step-1");
     for (var i=0; i < properGrades.length; i++) {
-      $("<li>" + "Original grade: " + grades[i] + ", converted grade: " + properGrades[i] + "</li>").appendTo(step1);
+      $("<li><p>" + "Original grade: " + grades[i] + ", converted grade: " + properGrades[i] + "</p></li>").appendTo(step1);
     }
 
     var step2 = $("#step-2");
@@ -220,10 +220,10 @@ $(document).ready(function() {
     for (var i=0; i < properGrades.length; i++) {
       var weightedGrade = properGrades[i] * credits[i];
       weightedGrades.push(weightedGrade);
-      $("<li>" + weightedGrade + " = " + properGrades[i] + " * " + credits[i] + "</li>").appendTo(step2);
+      $("<li><p>" + weightedGrade + " = " + properGrades[i] + " * " + credits[i] + "</p></li>").appendTo(step2);
     }
     var weightedGPA = previousGpa * previousCredits;
-    $("<li>" + weightedGPA + " = " + previousGpa + " * " + previousCredits + "</li>").appendTo(step2);
+    $("<li><p>" + weightedGPA + " = " + previousGpa + " * " + previousCredits + "</p></li>").appendTo(step2);
 
     var step3Line = "";
     var step3 = $("#step-3");
@@ -234,7 +234,8 @@ $(document).ready(function() {
         step3Line = step3Line + " + " + weightedGPA;
         sum = sum + weightedGrades[i];
         sum = sum + weightedGPA;
-        step3Line = "<li>" + sum + " = " + step3Line + "</li>";
+        sum = sum.toFixed(3);
+        step3Line = "<li><p>" + sum + " = " + step3Line + "</p></li>";
       }
       else {
         step3Line = step3Line + weightedGrades[i] + " + ";
@@ -252,7 +253,8 @@ $(document).ready(function() {
         step4Line = step4Line + " + " + previousCredits;
         sum2 = sum2 + parseInt(credits[i]);
         sum2 = sum2 + parseInt(previousCredits);
-        step4Line = "<li>" + sum2 + " = " + step4Line + "</li>";
+        sum2 = sum2.toFixed(3);
+        step4Line = "<li><p>" + sum2 + " = " + step4Line + "</p></li>";
       }
       else {
         step4Line = step4Line + credits[i] + " + ";
@@ -267,10 +269,12 @@ $(document).ready(function() {
       var gpa = 0;
     }
     else {
-      var gpa = (sum / sum2).toFixed(2);
+      var gpa = (sum / sum2).toFixed(3);
     }
 
-    var step5Line = "<li>" + gpa + " = " + sum + " / " + sum2 + "</li>";
+    var step5Line = "<li><p>" + gpa + " = " + sum + " / " + sum2 + "</p></li>";
     $(step5Line).appendTo(step5);
+
+    $("#algorithm-steps").children("ul").children("li").children("p").addClass("highlight");
   }
 });
