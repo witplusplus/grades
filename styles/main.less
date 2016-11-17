@@ -1,0 +1,213 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+html p {
+  margin-bottom: 5px;
+}
+
+body {
+  height: 100%;
+}
+
+tr td.td-padding {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 75px;
+}
+
+#side-bar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 200px;
+  #wgpa-title {
+    font-size: 30px;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    border-right: 1px solid black;
+    padding-top: 3px;
+    padding-bottom: 5px;
+    margin: 0px 0px 0px 0px;
+  }
+  #guide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 200px;
+    border-right: 1px solid black;
+    font-size: 20px;
+    box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
+    #main-guide {
+      height: 85%;
+      padding: 15px;
+      list-style-type: none;
+    }
+    #other-guide {
+      width: 100%;
+      height: 15%;
+      padding: 15px;
+      list-style-type: none;
+    }
+  }
+}
+
+#main-page {
+  height: 100%;
+  min-width: 250px;
+  margin-left: 200px;
+  #top-right-bar {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-left: 200px;
+    height: 50px;
+    border-bottom: 2px solid black;
+    background-color: white;
+    z-index: 1000000;
+    box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
+    #top-right-bar-left-box {
+      height: inherit;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      #hamburger-menu {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #current-page-title {
+        font-size: 25px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  #content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(250, 250, 250);
+    #title-purpose {
+      margin-top: 50px;
+      font-size: 40px;
+      text-align: center;
+    }
+    #calculator {
+      #spinner-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        .ui-spinner {
+          width: 140px;
+          height: 60px;
+        }
+        .ui-spinner > .ui-spinner-button {
+          width: 60px;
+          height: 30px;
+        }
+        #spinner-label {
+          margin-right: 20px;
+          text-align: center;
+          margin-top: 10px;
+          font-size: 20px;
+        }
+        #spinner {
+          height: 50px;
+          width: 60px;
+          text-align: center;
+          margin-right: 20px;
+        }
+      }
+      #table-container {
+        padding-left: 10px;
+        padding-right: 15px;
+      }
+      #previous-details {
+        margin: 10px 10px 10px 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        #previous-gpa {
+          padding: 4px 4px 4px 4px;
+        }
+        #previous-credits {
+          padding: 4px 4px 4px 4px;
+        }
+      }
+      #input-submit {
+        margin: 10px;
+        width: 50%;
+      }
+      h1 {
+        text-align: center;
+      }
+    }
+    #secondary-content {
+      margin-left: 5%;
+      margin-right: 5%;
+      #instructions {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid rgb(219, 226, 232);
+        box-shadow: 0 2px 4px 0 rgba(46,61,73,.2);
+        h2 {
+          font-size: 20px;
+          margin: 0px;
+        }
+      }
+      #algorithm-steps {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid rgb(219, 226, 232);
+        box-shadow: 0 2px 4px 0 rgba(46,61,73,.2);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        h1 {
+          font-size: 20px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
+
+.highlight {
+  background-color: rgb(242,169,0);
+  opacity: .8;
+  display: inline;
+  padding: 3px 3px 3px 3px;
+  border-radius: 2px 2px 2px 2px;
+}
+
+algorithm-steps > ul > li {
+  margin: 2px 2px 2px 2px;
+}

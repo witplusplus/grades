@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta tags -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <!--For device scaling - It basically shrinks to the size of the viewport for mobile devices.-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+  <!-- Title and links -->
   <title>Wentworth GPA Calculator</title>
   <link rel="icon" href="favicon-96x96.png"/>
   <link rel="stylesheet" type="text/css" href="styles/main.css"/>
   <link rel="stylesheet" href="styles/jquery-ui.css">
-  <link href="styles/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
 
   <!-- Google Analytics Code -->
   <script>
@@ -17,77 +22,124 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-15576825-8', 'auto');
   ga('send', 'pageview');
   </script>
 </head>
 
 <body>
-  <div id="banner">
-    <img src="styles/images/WIT-shield-and-type.jpg" id="logo">
-    <h1 id="title">GPA Calculator</h1>
-  </div>
-
-  <div id=spinner-container>
-    <h3 id=spinner-label>Number<br>of<br>Classes</h3>
-    <input id="spinner" name="value">
-  </div>
-
-  <form id="form-main-table" autocomplete="off">
-    <div id="table-container">
-      <table id="main-table" class="table-hover">
-        <tbody id="main-tbody">
-        </tbody>
-      </table>
-    </div>
-
-    <div id="previous-details">
-      <div id="previous-gpa">
-        <label>Previous GPA</label>
-        <input name="previous-gpa" value=4.0>
-      </div>
-
-      <div id="previous-credits">
-        <label>Previous Credits</label>
-        <input name="previous-credits" value=0>
-      </div>
-    </div>
-    <input id="input-submit" type="submit" name="Submit">
-  </form>
-
-  <h1 id="gpa" hidden="true"></h1>
-
-  <div id="guide">
-    <div id="instructions">
-      <p><b>Instructions:</b></p>
-      <ul>
-        <li>Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F) or valid numerics (0-100).</li>
-        <li>For previous GPA, enter a number on the scale of 0-4.</li>
-        <li>If you do not have a previous GPA or you want to calculate the GPA for 1 semester, you start off with a GPA of 4.0.</li>
-        <li>All calculations will be done in the algorithm steps once the submit button is pressed.
+  <!-- Side bar -->
+  <div id="side-bar">
+    <div id="wgpa-title">WGPA</div>
+    <!-- Guide bar -->
+    <div id="guide-container">
+      <ul id="main-guide" class="nav nav-pills">
+        <li role="presentation">
+          <a href="#">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            <span style="padding-left: 3px">Home</span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#">
+            <span class="glyphicon glyphicon-scale"></span>
+            <span style="padding-left: 3px">Scale</span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#">
+            <span class="glyphicon glyphicon-education"></span>
+            <span style="padding-left: 3px">Standing</span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#">
+            <span class="glyphicon glyphicon-sort-by-order"></span>
+            <span style="padding-left: 3px">Algorithm</span>
+          </a>
+        </li>
+      </ul>
+      <ul id="other-guide" class="nav nav-pills">
+        <li role="presentation">
+          <a href="#">
+            <span class="glyphicon glyphicon-globe"></span>
+            <span style="padding-left: 3px">About</span>
+          </a>
+        </li>
       </ul>
     </div>
+  </div>
 
-    <div id="algorithm-steps">
-      <h1>Algorithm Steps</h1>
+  <!-- Main page -->
+  <div id="main-page">
+    <!-- Top right bar -->
+    <div id="top-right-bar">
+      <div id="top-right-bar-left-box">
+        <div id="hamburger-menu">
+          <a href="#"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+        </div>
+        <div id="current-page-title">Home</div>
+      </div>
+    </div>
+    <!-- Content -->
+    <div id="content">
+      <div id="title-purpose">Calculate your GPA</div>
+      <div id="calculator">
+        <div id=spinner-container>
+          <h3 id=spinner-label>Number<br>of<br>Classes</h3>
+          <input id="spinner" name="value">
+        </div>
+        <form id="form-main-table" autocomplete="off">
+          <div id="table-container">
+            <table id="main-table" class="table-hover">
+              <tbody id="main-tbody">
+              </tbody>
+            </table>
+          </div>
+          <div id="previous-details">
+            <div id="previous-gpa">
+              <label>Previous GPA</label>
+              <input name="previous-gpa" value=4.0>
+            </div>
+            <div id="previous-credits">
+              <label>Previous Credits</label>
+              <input name="previous-credits" value=0>
+            </div>
+          </div>
+          <input id="input-submit" type="submit" name="Submit">
+        </form>
+        <h1 id="gpa" hidden="true"></h1>
+      </div>
+      <div id="secondary-content">
+        <div id="instructions">
+          <h2><b>Instructions</b></h2>
+          <ul>
+            <li>Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F) or valid numerics (0-100).</li>
+            <li>For previous GPA, enter a number on the scale of 0-4.</li>
+            <li>If you do not have a previous GPA or you want to calculate the GPA for 1 semester, you start off with a GPA of 4.0.</li>
+            <li>All calculations will be done in the algorithm steps once the submit button is pressed.
+          </ul>
+        </div>
+        <div id="algorithm-steps">
+          <h1><b>Algorithm Steps</b></h1>
+          <p>1. Convert grades into Wentworth's scale of 0-4.</p>
+          <ul id="step-1"></ul>
 
-      <p>1. Convert grades into Wentworth's scale of 0-4.</p>
-      <ul id="step-1"></ul>
+          <p>2. Calculate the weighted grade for each class by multiplying the grade and its respective credits.
+          The previous GPA also has to be weighted.</p>
+          <ul id="step-2"></ul>
 
-      <p>2. Calculate the weighted grade for each class by multiplying the grade and its respective credits.
-      The previous GPA also has to be weighted.</p>
-      <ul id="step-2"></ul>
+          <p>3. Sum up all the weighted grades.</p>
+          <ul id="step-3"></ul>
 
-      <p>3. Sum up all the weighted grades.</p>
-      <ul id="step-3"></ul>
+          <p>4. Sum up all the credits.</p>
+          <ul id="step-4"></ul>
 
-      <p>4. Sum up all the credits.</p>
-      <ul id="step-4"></ul>
-
-      <p>5. Divide the sum of the weighted grades by the sum of credits to get your weighted GPA. Round the GPA to two decimal
-      points</p>
-      <ul id="step-5"></ul>
+          <p>5. Divide the sum of the weighted grades by the sum of credits to get your weighted GPA. Round the GPA to two decimal
+          points</p>
+          <ul id="step-5"></ul>
+        </div>
+      </div>
     </div>
   </div>
 

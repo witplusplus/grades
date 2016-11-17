@@ -1,55 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+html p {
+  margin-bottom: 5px;
+}
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;
 }
-
-#title {
-  text-align: center;
-  border-bottom: 2px solid black;
-}
-
 tr td.td-padding {
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 4px;
   padding-bottom: 4px;
 }
-
 form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 input {
   width: 75px;
 }
-
-#input-submit {
-  margin: 10px;
-  width: 50%;
+#side-bar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 200px;
 }
-
-#spinner {
+#side-bar #wgpa-title {
+  font-size: 30px;
   height: 50px;
-  width: 60px;
+  width: 200px;
   text-align: center;
-  margin-right: 20px;
+  border-bottom: 2px solid black;
+  border-right: 1px solid black;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  margin: 0px 0px 0px 0px;
 }
-
-.ui-spinner {
-  width: 140px;
-  height: 60px;
+#side-bar #guide-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 200px;
+  border-right: 1px solid black;
+  font-size: 20px;
+  box-shadow: 5px 10px 15px 5px rgba(0, 0, 0, 0.1);
 }
-
-.ui-spinner > .ui-spinner-button {
-  width: 60px;
-  height: 30px;
+#side-bar #guide-container #main-guide {
+  height: 85%;
+  padding: 15px;
+  list-style-type: none;
 }
-
-#spinner-container {
+#side-bar #guide-container #other-guide {
+  width: 100%;
+  height: 15%;
+  padding: 15px;
+  list-style-type: none;
+}
+#main-page {
+  height: 100%;
+  min-width: 250px;
+  margin-left: 200px;
+}
+#main-page #top-right-bar {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-left: 200px;
+  height: 50px;
+  border-bottom: 2px solid black;
+  background-color: white;
+  z-index: 1000000;
+  box-shadow: 5px 10px 15px 5px rgba(0, 0, 0, 0.1);
+}
+#main-page #top-right-bar #top-right-bar-left-box {
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#main-page #top-right-bar #top-right-bar-left-box #hamburger-menu {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#main-page #top-right-bar #top-right-bar-left-box #current-page-title {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+#main-page #content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+}
+#main-page #content #title-purpose {
+  margin-top: 50px;
+  font-size: 40px;
+  text-align: center;
+}
+#main-page #content #calculator #spinner-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -57,40 +117,32 @@ input {
   margin-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
 }
-
-#spinner-label {
+#main-page #content #calculator #spinner-container .ui-spinner {
+  width: 140px;
+  height: 60px;
+}
+#main-page #content #calculator #spinner-container .ui-spinner > .ui-spinner-button {
+  width: 60px;
+  height: 30px;
+}
+#main-page #content #calculator #spinner-container #spinner-label {
   margin-right: 20px;
   text-align: center;
   margin-top: 10px;
   font-size: 20px;
 }
-
-html p {
-  margin-bottom: 5px;
+#main-page #content #calculator #spinner-container #spinner {
+  height: 50px;
+  width: 60px;
+  text-align: center;
+  margin-right: 20px;
 }
-
-#guide {
-  margin-left: 5%;
-  margin-right: 5%;
+#main-page #content #calculator #table-container {
+  padding-left: 10px;
+  padding-right: 15px;
 }
-
-#logo {
-  margin-top: 20px;
-  min-width: 250px;
-  max-width: 385px;
-}
-
-#banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#previous-details {
+#main-page #content #calculator #previous-details {
   margin: 10px 10px 10px 10px;
   display: flex;
   flex-direction: row;
@@ -98,30 +150,52 @@ html p {
   justify-content: center;
   align-content: center;
 }
-
-#previous-gpa {
+#main-page #content #calculator #previous-details #previous-gpa {
   padding: 4px 4px 4px 4px;
 }
-
-#previous-credits {
+#main-page #content #calculator #previous-details #previous-credits {
   padding: 4px 4px 4px 4px;
 }
-
-#table-container {
-  padding-left: 10px;
-  padding-right: 15px;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+#main-page #content #calculator #input-submit {
+  margin: 10px;
+  width: 50%;
 }
-
+#main-page #content #calculator h1 {
+  text-align: center;
+}
+#main-page #content #secondary-content {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+#main-page #content #secondary-content #instructions {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #dbe2e8;
+  box-shadow: 0 2px 4px 0 rgba(46, 61, 73, 0.2);
+}
+#main-page #content #secondary-content #instructions h2 {
+  font-size: 20px;
+  margin: 0px;
+}
+#main-page #content #secondary-content #algorithm-steps {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #dbe2e8;
+  box-shadow: 0 2px 4px 0 rgba(46, 61, 73, 0.2);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#main-page #content #secondary-content #algorithm-steps h1 {
+  font-size: 20px;
+  margin: 0px;
+}
 .highlight {
-  background-color: rgb(242,169,0);
+  background-color: #f2a900;
   opacity: .8;
   display: inline;
   padding: 3px 3px 3px 3px;
   border-radius: 2px 2px 2px 2px;
 }
-
 algorithm-steps > ul > li {
   margin: 2px 2px 2px 2px;
 }
