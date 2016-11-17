@@ -159,6 +159,12 @@ input {
 #main-page #content #calculator #input-submit {
   margin: 10px;
   width: 50%;
+  background-color: white;
+  border: 1px solid #2886D8;
+  border-radius: 5px;
+}
+#main-page #content #calculator #input-submit #input-submit:hover {
+  color: black;
 }
 #main-page #content #calculator h1 {
   text-align: center;

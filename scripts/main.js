@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+  loadBaseTemplate();
   var alphas = {
     'A': 4.00,
     'A-': 3.67,
@@ -276,5 +278,12 @@ $(document).ready(function() {
     $(step5Line).appendTo(step5);
 
     $("#algorithm-steps").children("ul").children("li").children("p").addClass("highlight");
+  }
+
+  //Non-calculator related functions - Down below.
+
+  function loadBaseTemplate() {
+    console.log("Hi");
+    $("html").load("base.html");
   }
 });
