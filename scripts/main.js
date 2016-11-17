@@ -284,6 +284,6 @@ $(document).ready(function() {
 
   function loadBaseTemplate() {
     console.log("Hi");
-    $("html").load("base.html");
+    $("content").load("calculator.html");
   }
 });
