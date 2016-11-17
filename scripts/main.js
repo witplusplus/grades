@@ -1,6 +1,7 @@
+loadBaseTemplate();
+
 $(document).ready(function() {
 
-  loadBaseTemplate();
   var alphas = {
     'A': 4.00,
     'A-': 3.67,
