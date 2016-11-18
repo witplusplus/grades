@@ -5,7 +5,13 @@ $(document).ready(function() {
   $("#home").on("click", function() {
     $("#content").empty();
     $("#content").load("calculator.html");
+    reload_js('main.js');
   });
+
+  function reload_js(src) {
+        $('script[src="' + src + '"]').remove();
+        $('<script>').attr('src', src).appendTo('head');
+    }
 
   //Calculator related code.
 
