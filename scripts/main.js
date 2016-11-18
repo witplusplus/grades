@@ -1,11 +1,11 @@
-$(document).on("ready ajaxComplete click", function() {
+$(document).ready(function() {
 
   //Non-calculator related code
 
-  $("#home").on("click", function() {
-    console.log("Clicked.");
+  $("#scale").on("click", function(event) {
+    console.log(event);
     $("#content").empty();
-    $("#content").load("calculator.html");
+    $("#content").load("scale.html");
   });
 
   //Calculator related code.
