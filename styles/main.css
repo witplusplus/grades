@@ -109,6 +109,11 @@ input {
   font-size: 40px;
   text-align: center;
 }
+#main-page #content #calculator #grading-scale-image {
+  margin-top: 200px;
+  width: 75%;
+  height: 75%;
+}
 #main-page #content #calculator #spinner-container {
   display: flex;
   flex-direction: row;
