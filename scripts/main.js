@@ -3,9 +3,20 @@ $(document).ready(function() {
   //Non-calculator related code
 
   $("#scale").on("click", function(event) {
-    console.log(event);
     $("#content").empty();
     $("#content").load("scale.html");
+  });
+  $("#standing").on("click", function(event) {
+    $("#content").empty();
+    $("#content").load("standing.html");
+  });
+  $("#algorithm").on("click", function(event) {
+    $("#content").empty();
+    $("#content").load("algorithm.html");
+  });
+  $("#about").on("click", function(event) {
+    $("#content").empty();
+    $("#content").load("about.html");
   });
 
   //Calculator related code.
