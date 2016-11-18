@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on("ready ajaxComplete", function() {
 
   //Non-calculator related code
 
