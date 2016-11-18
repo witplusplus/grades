@@ -5,21 +5,49 @@ $(document).ready(function() {
   $("#scale").on("click", function(event) {
     $("#content").empty();
     $("#content").load("scale.html");
+    $("#current-page-title").text("Scale");
   });
   $("#standing").on("click", function(event) {
     $("#content").empty();
     $("#content").load("standing.html");
+    $("#current-page-title").text("Standing");
+
   });
   $("#algorithm").on("click", function(event) {
     $("#content").empty();
-    $("#content").load("algorithm.html");
+    console.log(copyofAlgorithm);
+    if (copyofAlgorithm != undefined) {
+      $(copyofAlgorithm).appendTo("#content");
+      $("#current-page-title").text("Algorithm");
+      $("#content").css("padding", "40px");
+      $("#algorithm-steps").css("margin-top", "50px");
+      $("#algorithm-steps").addClass("block-text");
+    }
   });
   $("#about").on("click", function(event) {
     $("#content").empty();
     $("#content").load("about.html");
+    $("#current-page-title").text("About");
+  });
+
+  var isHidden = false;
+  $("#hamburger-menu").on("click", function(event) {
+    if (isHidden == false) {
+      $("#side-bar").css("transform", "translateX(-200px)");
+      $("#main-page").css("margin-left", "0px");
+      $("#top-right-bar").css("margin-left", "0px");
+      isHidden = true;
+    } else {
+      $("#side-bar").css("transform", "translateX(0px)");
+      $("#main-page").css("margin-left", "200px");
+      $("#top-right-bar").css("margin-left", "200px");
+      isHidden = false;
+    }
   });
 
   //Calculator related code.
+
+  var copyofAlgorithm;
 
   var alphas = {
     'A': 4.00,
@@ -298,5 +326,7 @@ $(document).ready(function() {
     $(step5Line).appendTo(step5);
 
     $("#algorithm-steps").children("ul").children("li").children("p").addClass("highlight");
+
+    copyofAlgorithm = $("#algorithm-steps").clone();
   }
 });

@@ -12,6 +12,9 @@ html p {
 
 body {
   height: 100%;
+  // Used to prevent scrolling.
+  overflow-x: hidden;
+  position: relative;
 }
 
 tr td.td-padding {
@@ -41,7 +44,6 @@ input {
   #wgpa-title {
     font-size: 30px;
     height: 50px;
-    width: 200px;
     text-align: center;
     border-bottom: 2px solid black;
     border-right: 1px solid black;
@@ -54,7 +56,6 @@ input {
     flex-direction: column;
     align-items: center;
     height: 100%;
-    width: 200px;
     border-right: 1px solid black;
     font-size: 20px;
     box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
@@ -77,6 +78,7 @@ input {
   min-width: 250px;
   margin-left: 200px;
   #top-right-bar {
+    margin-left: 200px;
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -84,7 +86,6 @@ input {
     left: 0;
     display: block;
     width: 100%;
-    margin-left: 200px;
     height: 50px;
     border-bottom: 2px solid black;
     background-color: white;
@@ -109,18 +110,13 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(250, 250, 250);
+    //background-color: rgb(250, 250, 250);
     #title-purpose {
       margin-top: 50px;
       font-size: 40px;
       text-align: center;
     }
     #calculator {
-      #grading-scale-image {
-        margin-top: 200px;
-        width: 75%;
-        height: 75%;
-      }
       #spinner-container {
         display: flex;
         flex-direction: row;
@@ -211,14 +207,39 @@ input {
   }
 }
 
+#picture-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 80px;
+  img {
+    min-width: 200px;
+    min-height: 100px;
+  }
+}
+
 .highlight {
   background-color: rgb(242,169,0);
   opacity: .8;
   display: inline;
-  padding: 3px 3px 3px 3px;
+  padding: 1px;
+  margin: 3px 3px 3px 3px;
   border-radius: 2px 2px 2px 2px;
 }
 
-algorithm-steps > ul > li {
-  margin: 2px 2px 2px 2px;
+.spacing {
+  margin-top: 50px;
+}
+
+.block-text {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid rgb(219, 226, 232);
+  box-shadow: 0 2px 4px 0 rgba(46,61,73,.2);
+}
+
+.content-padding {
+  padding: 0px 40px 40px 40px;
+  width: 100%;
 }
