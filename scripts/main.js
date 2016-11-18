@@ -1,8 +1,9 @@
-$(document).on("ready ajaxComplete", function() {
+$(document).on("ready ajaxComplete click", function() {
 
   //Non-calculator related code
 
   $("#home").on("click", function() {
+    console.log("Clicked.");
     $("#content").empty();
     $("#content").load("calculator.html");
   });
