@@ -4,8 +4,8 @@ $(document).ready(function() {
 
   $("#home").on("click", function() {
     $("#content").empty();
-    $("#content").load("calculator.html");
-    reload_js('scripts/main.js');
+    //$("#content").load("calculator.html");
+    //reload_js('scripts/main.js');
   });
 
   function reload_js(src) {
