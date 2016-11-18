@@ -1,13 +1,11 @@
 $(document).ready(function() {
 
   //Non-calculator related code
-  
-  function loadBaseTemplate() {
-    console.log("Hi");
-    $("#content").load("calculator.html")
-  }
 
-  loadBaseTemplate();
+  $("#home").on("click", function() {
+    $("#content").empty();
+    $("#content").load("calculator.html");
+  });
 
   //Calculator related code.
 

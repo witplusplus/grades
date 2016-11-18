@@ -40,7 +40,7 @@
     <div id="guide-container">
       <ul id="main-guide" class="nav nav-pills">
         <li role="presentation">
-          <a href="index.html">
+          <a id="home">
             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
             <span style="padding-left: 3px">Home</span>
           </a>
@@ -88,6 +88,63 @@
     </div>
     <!-- Content -->
     <div id="content">
+      <div id="title-purpose">Calculate your GPA</div>
+      <div id="calculator">
+        <div id=spinner-container>
+          <h3 id=spinner-label>Number<br>of<br>Classes</h3>
+          <input id="spinner" name="value">
+        </div>
+        <form id="form-main-table" autocomplete="off">
+          <div id="table-container">
+            <table id="main-table" class="table-hover">
+              <tbody id="main-tbody">
+              </tbody>
+            </table>
+          </div>
+          <div id="previous-details">
+            <div id="previous-gpa">
+              <label>Previous GPA</label>
+              <input name="previous-gpa" value=4.0>
+            </div>
+            <div id="previous-credits">
+              <label>Previous Credits</label>
+              <input name="previous-credits" value=0>
+            </div>
+          </div>
+          <input id="input-submit" type="submit" name="Submit">
+        </form>
+        <h1 id="gpa" hidden="true"></h1>
+      </div>
+      <div id="secondary-content">
+        <div id="instructions">
+          <h2><b>Instructions</b></h2>
+          <ul>
+            <li>Please enter valid grade letters (A, A, B+, B, B-, C+, C, C-, D+, D, F) or valid numerics (0-100).</li>
+            <li>For previous GPA, enter a number on the scale of 0-4.</li>
+            <li>If you do not have a previous GPA or you want to calculate the GPA for 1 semester, you start off with a GPA of 4.0.</li>
+            <li>All calculations will be done in the algorithm steps once the submit button is pressed.
+          </ul>
+        </div>
+        <div id="algorithm-steps">
+          <h1><b>Algorithm Steps</b></h1>
+          <p>1. Convert grades into Wentworth's scale of 0-4.</p>
+          <ul id="step-1"></ul>
+
+          <p>2. Calculate the weighted grade for each class by multiplying the grade and its respective credits.
+          The previous GPA also has to be weighted.</p>
+          <ul id="step-2"></ul>
+
+          <p>3. Sum up all the weighted grades.</p>
+          <ul id="step-3"></ul>
+
+          <p>4. Sum up all the credits.</p>
+          <ul id="step-4"></ul>
+
+          <p>5. Divide the sum of the weighted grades by the sum of credits to get your weighted GPA. Round the GPA to two decimal
+          points</p>
+          <ul id="step-5"></ul>
+        </div>
+      </div>
     </div>
   </div>
 </body>
