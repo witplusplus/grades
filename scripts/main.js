@@ -2,6 +2,12 @@ $(document).ready(function() {
 
   //Non-calculator related code
 
+  function hideMenu() {
+    $("#side-bar").css("transform", "translateX(-200px)");
+    $("#main-page").css("margin-left", "0px");
+    $("#top-right-bar").css("margin-left", "0px");
+  }
+
   $("#scale").on("click", function(event) {
     $("#content").empty();
     $("#content").load("scale.html");
@@ -30,12 +36,11 @@ $(document).ready(function() {
     $("#current-page-title").text("About");
   });
 
-  var isHidden = false;
+  hideMenu();
+  var isHidden = true;
   $("#hamburger-menu").on("click", function(event) {
     if (isHidden == false) {
-      $("#side-bar").css("transform", "translateX(-200px)");
-      $("#main-page").css("margin-left", "0px");
-      $("#top-right-bar").css("margin-left", "0px");
+      hideMenu();
       isHidden = true;
     } else {
       $("#side-bar").css("transform", "translateX(0px)");
