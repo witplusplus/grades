@@ -146,15 +146,15 @@ $(document).ready(function() {
   }
 
   function setRanges() {
-    var A = new Range(96, 4.00);
-    var Aminus = new Range(92, 3.67);
-    var Bplus = new Range(88, 3.33);
-    var B = new Range(84, 3.00);
+    var A = new Range(93, 4.00);
+    var Aminus = new Range(90, 3.67);
+    var Bplus = new Range(87, 3.33);
+    var B = new Range(83, 3.00);
     var Bminus = new Range(80, 2.67);
-    var Cplus = new Range(76, 2.33);
-    var C = new Range(72, 2.00);
-    var Cminus = new Range(68, 1.67);
-    var Dplus = new Range(64, 1.33);
+    var Cplus = new Range(77, 2.33);
+    var C = new Range(73, 2.00);
+    var Cminus = new Range(70, 1.67);
+    var Dplus = new Range(66, 1.33);
     var D = new Range(60, 1.00);
     var F = new Range(0, 0.00);
     ranges = [A, Aminus, Bplus, B, Bminus, Cplus, C, Cminus, Dplus, D, F];
